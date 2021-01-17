@@ -27,41 +27,49 @@ class SunData extends React.Component {
         this.refreshSunData();
     }
 
-    getDiff(today, yesterday) {
+    getDiffFromYesterday(today, yesterday) {
         const diff = today.diff(yesterday, 'minutes');
-        console.log("diff => ", diff)
+
         if (diff > 0) return `+${diff}`;
-        if (diff == 0) return "+1";
+        if (diff == 0) return "=";
         return `${diff}`;
+    }
+
+    getDayDuration(sunrise, sunset) {
+        const diff = sunset.diff(sunrise, 'minutes');
+        const hours = Math.floor(diff / 60);
+        const minutes = diff % 60;
+
+        const pad = (n) => `0${n}`.slice(-2);
+        return `${pad(hours)}h${pad(minutes)}`;
     }
 
     refreshSunData() {
         const { lat, lon, tz } = this.state;
 
-        // Yesterday
-        let yesterday = new Date();
-
-        yesterday.setDate(yesterday.getDate() - 1);
-        const yTimes = SunCalc.getTimes(yesterday, lat, lon);
-
-        const ySunrise = moment(yTimes.sunrise).tz(tz).add(1, 'days');
-        const ySunset = moment(yTimes.sunset).tz(tz).add(1, 'days');
-
         // Today
         const today = new Date();
         const times = SunCalc.getTimes(today, lat, lon);
-
         const sunrise = moment(times.sunrise).tz(tz);
         const sunset = moment(times.sunset).tz(tz);
 
-        const sunriseDiff = this.getDiff(sunrise, ySunrise);
-        const sunsetDiff = this.getDiff(sunset, ySunset);
+        // Yesterday
+        const yesterday = new Date().setDate(today.getDate() - 1);
+        const yTimes = SunCalc.getTimes(yesterday, lat, lon);
+        const ySunrise = moment(yTimes.sunrise).tz(tz).add(1, 'days');
+        const ySunset = moment(yTimes.sunset).tz(tz).add(1, 'days');
+
+        // Diffs
+        const sunriseDiff = this.getDiffFromYesterday(sunrise, ySunrise);
+        const sunsetDiff = this.getDiffFromYesterday(sunset, ySunset);
+        const duration = this.getDayDuration(sunrise, sunset);
 
         this.setState({ 
             sunData : {
                 ...this.state.sunData,
                 sunrise: sunrise.format('HH:mm'),
                 sunset: sunset.format('HH:mm'),
+                duration,
                 sunriseDiff,
                 sunsetDiff
             }
@@ -83,6 +91,7 @@ class SunData extends React.Component {
             <div className="sun-data">
                 <p>Sunrise: {sd.sunrise} ({sd.sunriseDiff})</p>
                 <p>Sunset: {sd.sunset} ({sd.sunsetDiff})</p>
+                <p>Duration: {sd.duration}</p>
                 <Settings onSettingsChange={this.handleSettingsChange.bind(this)} />
             </div>
         )
