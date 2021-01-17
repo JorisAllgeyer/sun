@@ -55,7 +55,7 @@ class SunData extends React.Component {
         const sd = this.state.sunData;
 
         return (
-            <div id="sun-data">
+            <div className="sun-data">
                 <p>Sunrise: {sd.sunrise}</p>
                 <p>Sunset: {sd.sunset}</p>
                 <Settings onSettingsChange={this.handleSettingsChange.bind(this)} />

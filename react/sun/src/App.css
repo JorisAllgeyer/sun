@@ -4,15 +4,34 @@
 }
 
 html, body {
-    font-family: 'Helvetica', sans-serif;
     color: #191919;
-    background-color: #e5e5e5;
-    font-size: 48px;
+    background-color: #f2f2f2;
 }
 
-#app {
+#root {
     margin: 0 auto;
     padding: 0 15px;
     max-width: 800px;
+}
+
+/* Header */
+#header {
+    display: flex;
+    justify-content: space-between;
+}
+
+#header h1 {
+    font-family: 'Helvetica', sans-serif;
+    margin: 0;
+    font-size: 120px; 
+}
+
+#header nav ul li { list-style-type: none; }
+#header nav a { color: inherit; text-decoration: none; }
+#header nav a:hover { color: inherit; text-decoration: underline; }
+
+.sun-data {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 32px;
 }
 
