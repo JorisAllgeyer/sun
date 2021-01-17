@@ -10,7 +10,7 @@ class Settings extends React.Component {
         super(props);
 
         // Temporary initialized here
-        this.store = new Store("coord");
+        // this.store = new Store("coord");
 
         this.default = { 
             center: { lat: 48.8534, lng: 2.3488 },

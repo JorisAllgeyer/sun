@@ -6,15 +6,13 @@ import Header from './components/Header';
 import SunData from './components/SunData';
 
 // Init here store and pass it to other components as props
-import Store from './Store';
+import Store from './components/Store';
 
 // GMaps alternatives:
 // https://openlayers.org/
 // https://leafletjs.com/examples.html
 
 class App extends React.Component {
-
-
 
     render() {
         return (
@@ -24,7 +22,10 @@ class App extends React.Component {
                     <Route path="/">
                         <SunData lat={48.5734053} lon={7.7521113} />
                     </Route>
-                    <Route path="/settings">
+                    <Route path="/sun/:sun">
+                        {/* <Settings /> */}
+                    </Route>
+                    <Route path="/settings/:sun">
                         {/* <Settings /> */}
                     </Route>
                 </Switch>
