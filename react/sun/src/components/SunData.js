@@ -10,7 +10,7 @@ class SunData extends React.Component {
 
     constructor(props) {
         super();
-        
+
         this.lat = props.lat;
         this.lon = props.lon;
         this.tz = tzlookup(this.lat, this.lon);

@@ -1,4 +1,36 @@
 // Store is a localstorage util
+// https://react-native-async-storage.github.io/async-storage/docs/install/
+
+/*
+data : {
+    "sun_settings": {
+        "sun_1": {
+            "name": string,
+            "lat": float,
+            "lon": float,
+            "tz": string,
+            "notification_enabled": bool
+        },
+        "sun_2" : {
+            "name": string,
+            "lat": float,
+            "lon": float,
+            "tz": string,
+            "notification_enabled": bool
+        },
+        "sun_3": {
+            "name": string,
+            "lat": float,
+            "lon": float,
+            "tz": string,
+            "notification_enabled": bool
+        }
+    },
+    "gen_settings" : {
+        "langage": string
+    }
+}
+*/
 
 class Store {
 
@@ -11,7 +43,7 @@ class Store {
     // Returns a parsed version of the store if exists or {}
     getItem() {
         const items = this.ls.getItem(this.item);
-        return getItem ? JSON.parse(items): {};
+        return items ? JSON.parse(items): {};
     }
 
     getItemCount() {
