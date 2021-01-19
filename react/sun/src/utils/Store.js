@@ -41,7 +41,7 @@ class Store {
     }
 
     // Returns a parsed version of the store if exists or {}
-    getItem() {
+    getItem(itemName) {
         const items = this.ls.getItem(this.item);
         return items ? JSON.parse(items): {};
     }

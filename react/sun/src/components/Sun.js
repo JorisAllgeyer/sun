@@ -4,16 +4,22 @@ import SunCalc from 'suncalc';
 import tzlookup from 'tz-lookup';
 import moment from 'moment-timezone';
 
-import Settings from './Settings';
+import Store from '../utils/Store';
 
-class SunData extends React.Component {
+class Sun extends React.Component {
 
     constructor(props) {
-        super();
+        super(props);
+        
+        const sunId = this.props.match.params.id;
+        const sunSettings = new Store("sun_settings").getItem(sunId)[sunId];
 
-        this.lat = props.lat;
-        this.lon = props.lon;
+        console.log(JSON.stringify(sunSettings));
+
+        this.lat = 48.5734053;
+        this.lon = 7.7521113;
         this.tz = tzlookup(this.lat, this.lon);
+
 
         this.state = {
             sunData: {},
@@ -92,10 +98,9 @@ class SunData extends React.Component {
                 <p>Sunrise: {sd.sunrise} ({sd.sunriseDiff})</p>
                 <p>Sunset: {sd.sunset} ({sd.sunsetDiff})</p>
                 <p>Duration: {sd.duration}</p>
-                <Settings onSettingsChange={this.handleSettingsChange.bind(this)} />
             </div>
         )
     }
 }
 
-export default SunData;
+export default Sun;

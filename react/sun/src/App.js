@@ -2,11 +2,11 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import Header from './components/Header';
-import SunData from './components/SunData';
+import Home from './components/Home';
+import Sun from './components/Sun';
+import Settings from './components/Settings';
 
 // Init here store and pass it to other components as props
-import Store from './components/Store';
 
 // GMaps alternatives:
 // https://openlayers.org/
@@ -17,16 +17,11 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                <Header />
                 <Switch>
-                    <Route path="/">
-                        <SunData lat={48.5734053} lon={7.7521113} />
-                    </Route>
-                    <Route path="/sun/:sun">
-                        {/* <Settings /> */}
-                    </Route>
-                    <Route path="/settings/:sun">
-                        {/* <Settings /> */}
+                    <Route exact path="/:id" component={Sun} />
+                    <Route exact path="/settings/:id" component={Settings}/>
+                    <Route exact path="/">
+                        <Home />
                     </Route>
                 </Switch>
             </Router>
