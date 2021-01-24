@@ -2,7 +2,7 @@ import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import tzlookup from 'tz-lookup';
 
-import Store from '../utils/Store';
+import Store from '../model/Store';
 
 class Settings extends React.Component {
 

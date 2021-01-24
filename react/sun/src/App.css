@@ -22,7 +22,7 @@ html, body {
     justify-content: space-between;
 }
 
-#header h1 {
+#header h1, #header h2 {
     font-family: 'Helvetica', sans-serif;
     margin: 0;
     font-size: 120px; 

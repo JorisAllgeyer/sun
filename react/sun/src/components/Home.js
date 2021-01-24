@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Header from './Header';
-import Store from '../utils/Store';
+import Store from '../model/Store';
 
 class Home extends React.Component {
 
@@ -18,14 +18,14 @@ class Home extends React.Component {
 
     renderBlankPage() {
         return (
-            <Link to="/settings/sun-1">Create yout first sun</Link>
+            <Link to="/settings/sun_1">Create yout first sun</Link>
         )
     }
 
     renderSunList() {
         const suns = Object.keys(this.sun_settings);
-        return suns.map((sun) => 
-            <p><Link to={"/" + sun}>{this.sun_settings[sun].sun_name}</Link></p>
+        return suns.map((sun, key) => 
+            <p key={key}><Link to={"/" + sun}>{this.sun_settings[sun].sun_name}</Link></p>
         );
     }
 

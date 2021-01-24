@@ -9,6 +9,8 @@ class Header extends React.Component {
     constructor(props) {
         super(props);
         this.transl = getTranslations("en", "header");
+
+        this.sunName = this.props.sunName ? this.props.sunName : null;
     }
 
     render() {
@@ -17,12 +19,12 @@ class Header extends React.Component {
         return (
             <header id="header">
                 <div className="header-part">
-                    <h1><Link to="/">Sun.</Link></h1>
+                    <h1><Link to="/">Sun</Link>{this.sunName ? ": " + this.sunName : "."}</h1>
                 </div>
                 <div className="header-part">
                     <nav>
                         <ul>
-                            <li><Link to={"/settings" + this.props.path}><FiSettings value={{ style: "3em" }} /></Link></li>
+                            <li><Link to={"/settings/" + this.props.path}><FiSettings value={{ style: "3em" }} /></Link></li>
                         </ul>
                     </nav>
                 </div>
