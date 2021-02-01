@@ -8,12 +8,12 @@ class Home extends React.Component {
 
     constructor() {
         super();
-        this.store = new Store("sun_settings");
-        this.sun_settings = this.store.getItem("sun_settings");
+        this.store = new Store();
+        this.sun_settings = this.store.getSuns();
     }
 
     componentDidMount() {
-        // console.log("this.sun_settings", this.sun_settings);
+        
     }
 
     renderBlankPage() {

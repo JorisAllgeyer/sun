@@ -35,45 +35,40 @@ data : {
 class Store {
 
     // Init local storage and store name
-    constructor(itemName) {
+    constructor() {
         this.ls = window.localStorage;
-        this.item = itemName;
     }
 
-    // Returns a parsed version of the store if exists or {}
-    getItem(itemName) {
-        const items = this.ls.getItem(this.item);
-        return items ? JSON.parse(items): {};
+    getAvailableSlots
+
+    getSuns() {
+        const suns = this.ls.getItem('sun_settings');
+        return suns ? JSON.parse(suns): {};
     }
 
-    getItemCount() {
-        const item = this.ls.getItem(this.item);
-        return item ? Object.keys(JSON.parse(item)).length : 0;
+    getSun(id) {
+        const suns = this.getSuns();
+        return suns ? suns[id] : {};
     }
 
-    // Add a new item to the store
-    addItem(itemName, data) {
-        const items = this.getItem() ? this.getItem() : {};
-        items[itemName] = data;
-        this.ls.setItem(this.item, JSON.stringify(items));
+    getSunCount() {
+        const suns = this.ls.getItem('sun_settings');
+        return suns ? Object.keys(JSON.parse(suns)).length : 0;
     }
 
-    // Remove an item from the store
-    removeItem(itemName) {
-        const items = this.getItem();
-        delete items[itemName];
-        this.ls.setItem(this.item, JSON.stringify(items));
+    addSun(id, sun_name, lat, lon, tz, notification_enabled) {
+        const suns = this.getSuns() ? this.getSuns() : {};
+        const data = { sun_name, lat, lon, tz, notification_enabled };
+        suns[id] = data;
+
+        console.log("addSun, suns => ", suns);
+        this.ls.setItem("sun_settings", JSON.stringify(suns));
     }
 
-    // Returns an array version of all the items in the store
-    getStore() {
-        const items = this.getitem();
-        return items ? Object.keys(items) : [];
-    }
-
-    // Empty the store
-    emptyStore() {
-        this.ls.removeItem(this.item);
+    rmSun(name) {
+        const suns = this.getSuns();
+        delete suns[name];
+        this.ls.setItem("sun_settings", JSON.stringify(suns));
     }
 }
 

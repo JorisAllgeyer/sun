@@ -13,13 +13,14 @@ class Sun extends React.Component {
         super(props);
         
         const sunId = this.props.match.params.id;
-        const sunSettings = new Store("sun_settings").getItem(sunId)[sunId];
+        const sunSettings = new Store().getSun(sunId);
+        console.log("sunSettings", JSON.stringify(sunSettings));
+        
         this.sunName = sunSettings.sun_name;
 
-        console.log("sunSettings", JSON.stringify(sunSettings));
 
-        this.lat = 48.5734053;
-        this.lon = 7.7521113;
+        this.lat = sunSettings.lat;
+        this.lon = sunSettings.lon;
         this.tz = tzlookup(this.lat, this.lon);
 
 
@@ -58,20 +59,21 @@ class Sun extends React.Component {
         // Today
         const today = new Date();
         const times = SunCalc.getTimes(today, lat, lon);
+
         const sunrise = moment(times.sunrise).tz(tz);
         const sunset = moment(times.sunset).tz(tz);
-
+        
         // Yesterday
         const yesterday = new Date().setDate(today.getDate() - 1);
         const yTimes = SunCalc.getTimes(yesterday, lat, lon);
         const ySunrise = moment(yTimes.sunrise).tz(tz).add(1, 'days');
         const ySunset = moment(yTimes.sunset).tz(tz).add(1, 'days');
-
+        
         // Diffs
         const sunriseDiff = this.getDiffFromYesterday(sunrise, ySunrise);
         const sunsetDiff = this.getDiffFromYesterday(sunset, ySunset);
         const duration = this.getDayDuration(sunrise, sunset);
-
+        
         this.setState({ 
             sunData : {
                 ...this.state.sunData,
@@ -83,7 +85,7 @@ class Sun extends React.Component {
             }
         })
     }
-
+    
     handleSettingsChange({ lat, lng }) {
         this.setState({
             lat: lat,
@@ -91,10 +93,10 @@ class Sun extends React.Component {
             tz: tzlookup(lat, lng)
         }, () => this.refreshSunData())
     }
-
+    
     render() {
         const sd = this.state.sunData;
-
+        
         return (
             <>
                 <Header sunName={this.sunName} path={this.props.match.params.id} />

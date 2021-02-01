@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { FiSettings } from 'react-icons/fi';
 
-import { getTranslations } from '../i18n/i18n';
+import { getTranslations } from '../assets/i18n/i18n';
 
 class Header extends React.Component {
 

@@ -9,23 +9,29 @@ class Settings extends React.Component {
     constructor(props) {
         super(props);
 
-        this.store = new Store("sun_settings");
+        this.store = new Store();
+        this.sunId = "sun_1";
 
+        const { sun_name, lat, lon, tz } = this.store.getSun(this.sunId);
+
+        this.state = { sun_name, lat, lon, tz }
         this.default = { 
-            center: { lat: 48.8534, lng: 2.3488 },
-            zoom: 5
-        }
-
-        this.state = { 
-            sun_name: "",
-            lat: "",
-            lon: "",
-            tz: ""
+            center: { 
+                lat: parseFloat(lat), 
+                lng: parseFloat(lon) 
+            }, 
+            zoom: 5 
         }
     }
 
-    saveSettings() {
-        this.store.addItem("sun_1", this.state)
+    saveSettings(e) {
+        e.preventDefault();
+        const { sun_name, lat, lon, tz } = this.state;
+        const notification_enabled = true;
+        console.log("save");
+        console.log(this.state);
+
+        this.store.addSun(this.sunId, sun_name, lat, lon, tz, notification_enabled);
     }
 
     setName(e) {
