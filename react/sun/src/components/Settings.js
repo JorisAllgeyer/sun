@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Redirect } from "react-router-dom";
 import GoogleMapReact from 'google-map-react';
 import tzlookup from 'tz-lookup';
 
@@ -10,15 +11,19 @@ class Settings extends React.Component {
         super(props);
 
         this.store = new Store();
-        this.sunId = "sun_1";
+        const sunId = this.props.match.params.id;
+        this.sunId = sunId;
+        console.log("sunId", sunId);
 
-        const { sun_name, lat, lon, tz } = this.store.getSun(this.sunId);
+        const { sun_name, lat, lon, tz } = this.store.getSun(this.sunId) 
+            ? this.store.getSun(this.sunId) 
+            : { sun_name: "", lat: "", lon: "", tz: "" };
 
         this.state = { sun_name, lat, lon, tz }
         this.default = { 
             center: { 
-                lat: parseFloat(lat), 
-                lng: parseFloat(lon) 
+                lat: parseFloat(lat) ? parseFloat(lat) : 48.8534, 
+                lng: parseFloat(lon) ? parseFloat(lon) : 2.3488
             }, 
             zoom: 5 
         }
@@ -32,6 +37,8 @@ class Settings extends React.Component {
         console.log(this.state);
 
         this.store.addSun(this.sunId, sun_name, lat, lon, tz, notification_enabled);
+
+        this.props.history.push("/" + this.sunId);
     }
 
     setName(e) {

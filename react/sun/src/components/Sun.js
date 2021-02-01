@@ -15,7 +15,7 @@ class Sun extends React.Component {
         const sunId = this.props.match.params.id;
         const sunSettings = new Store().getSun(sunId);
         console.log("sunSettings", JSON.stringify(sunSettings));
-        
+
         this.sunName = sunSettings.sun_name;
 
 
