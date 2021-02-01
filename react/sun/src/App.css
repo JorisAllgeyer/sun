@@ -25,13 +25,14 @@ html, body {
 #header h1, #header h2 {
     font-family: 'Helvetica', sans-serif;
     margin: 0;
-    font-size: 120px; 
+    font-size: 80px;
+    word-wrap: break-word;
 }
 
 #header nav ul li { list-style-type: none; }
 #header nav a:hover { color: inherit; text-decoration: underline; }
 
-.sun-data {
+.sun-data, .sun-list {
     font-family: 'Helvetica', sans-serif;
     font-size: 32px;
 }

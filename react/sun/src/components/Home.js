@@ -34,7 +34,7 @@ class Home extends React.Component {
         );
         const newSunLink = moreSun ? <Link to={"/settings/sun_" + nextId}>+</Link> : "";
         
-        return <div>
+        return <div class="sun-list">
             {sunList}
             {newSunLink}
         </div>
@@ -43,7 +43,7 @@ class Home extends React.Component {
     render() {
         return (
             <>
-            <Header />
+            <Header path="gen_settings" />
             <div id="home">
                 {Object.keys(this.sun_settings).length ? this.renderSunList(): this.renderBlankPage()}
             </div>

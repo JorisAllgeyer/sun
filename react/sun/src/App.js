@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Home from './components/Home';
 import Sun from './components/Sun';
@@ -20,7 +20,7 @@ class App extends React.Component {
                 <Switch>
                     <Route exact path="/:id" component={Sun} />
                     <Route exact path="/settings/:id" component={Settings}/>
-                    <Route exact path="/">
+                    <Route path="/">
                         <Home />
                     </Route>
                 </Switch>

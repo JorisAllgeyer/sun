@@ -14,15 +14,11 @@ class Sun extends React.Component {
         
         const sunId = this.props.match.params.id;
         const sunSettings = new Store().getSun(sunId);
-        console.log("sunSettings", JSON.stringify(sunSettings));
 
         this.sunName = sunSettings.sun_name;
-
-
         this.lat = sunSettings.lat;
         this.lon = sunSettings.lon;
         this.tz = tzlookup(this.lat, this.lon);
-
 
         this.state = {
             sunData: {},
