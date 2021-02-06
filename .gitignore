@@ -1,12 +1,3 @@
 # React
 /react/sun/node_modules
 /react/sun/build
-
-# React Native
-/react-native/sun/node_modules
-/react-native/sun/npm-debug.log
-/react-native/sun/yarn-error.log
-
-# Expo
-/react-native/sun/.expo/*
-/react-native/sun/web-build/
