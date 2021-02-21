@@ -4,7 +4,8 @@ import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Home from './components/Home';
 import Sun from './components/Sun';
-import Settings from './components/Settings';
+import SunSettings from './components/SunSettings';
+import GeneralSettings from './components/GeneralSettings';
 
 // Init here store and pass it to other components as props
 
@@ -19,7 +20,8 @@ class App extends React.Component {
             <Router>
                 <Switch>
                     <Route exact path="/:id" component={Sun} />
-                    <Route exact path="/settings/:id" component={Settings}/>
+                    <Route exact path="/settings/sun/:id" component={SunSettings}/>
+                    <Route exact path="/settings/general" component={GeneralSettings}/>
                     <Route path="/">
                         <Home />
                     </Route>

@@ -21,7 +21,7 @@ class Home extends React.Component {
 
     renderBlankPage() {
         return (
-            <Link to="/settings/sun_1">Create your first sun</Link>
+            <Link to="/settings/sun/1">Create your first sun</Link>
         )
     }
 
@@ -32,7 +32,7 @@ class Home extends React.Component {
         const sunList = suns.map((sun, key) => 
             <p key={key}><Link to={"/" + sun}>{this.sun_settings[sun].sun_name}</Link></p>
         );
-        const newSunLink = moreSun ? <Link to={"/settings/sun_" + nextId}>+</Link> : "";
+        const newSunLink = moreSun ? <Link to={"/settings/sun/" + nextId}>+</Link> : "";
         
         return <div class="sun-list">
             {sunList}
@@ -43,7 +43,7 @@ class Home extends React.Component {
     render() {
         return (
             <>
-            <Header path="gen_settings" />
+            <Header path="settings/general" />
             <div id="home">
                 {Object.keys(this.sun_settings).length ? this.renderSunList(): this.renderBlankPage()}
             </div>

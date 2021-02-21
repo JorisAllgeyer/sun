@@ -39,7 +39,7 @@ class Store {
         this.ls = window.localStorage;
     }
 
-    getAvailableSlots
+    // getAvailableSlots
 
     getSuns() {
         const suns = this.ls.getItem('sun_settings');

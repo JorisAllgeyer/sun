@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Redirect } from "react-router-dom";
+import Header from './Header';
 import GoogleMapReact from 'google-map-react';
 import tzlookup from 'tz-lookup';
 
@@ -58,6 +58,8 @@ class Settings extends React.Component {
     render() {
 
         return (
+            <>
+            <Header path="settings/general" />
             <div style={{ height: '350px', width: '100%' }}>
                 <form id="settings_form" onSubmit={this.saveSettings.bind(this)}>
                     <p>
@@ -91,6 +93,7 @@ class Settings extends React.Component {
                         onClick={this.setCoordinates.bind(this)}>
                 </GoogleMapReact>
             </div>
+            </>
         )
     }
 }

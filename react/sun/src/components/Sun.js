@@ -92,10 +92,10 @@ class Sun extends React.Component {
     
     render() {
         const sd = this.state.sunData;
-        
+
         return (
             <>
-                <Header sunName={this.sunName} path={this.props.match.params.id} />
+                <Header sunName={this.sunName} path={"settings/sun/" + this.props.match.params.id} />
                 <div className="sun-data">
                     <p>Sunrise: {sd.sunrise} ({sd.sunriseDiff} min)</p>
                     <p>Sunset: {sd.sunset} ({sd.sunsetDiff} min)</p>

@@ -24,7 +24,7 @@ class Header extends React.Component {
                 <div className="header-part">
                     <nav>
                         <ul>
-                            <li><Link to={"/settings/" + this.props.path}><FiSettings value={{ style: "3em" }} /></Link></li>
+                            <li><Link to={this.props.path}><FiSettings value={{ style: "3em" }} /></Link></li>
                         </ul>
                     </nav>
                 </div>
